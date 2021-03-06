@@ -108,25 +108,8 @@
       .then((data) => {
         const items = data.querySelectorAll("item");
         items.forEach((item) => {
-          let new_div = document.createElement("div");
-          let current_data = [];
-          item.childNodes.forEach((el) => {
-            let content = el.innerHTML;
-            current_data.push(content);
-          });
-          var text = document.createTextNode(current_data[0]);
-          var link = document.createTextNode(current_data[1]);
-          var date = document.createTextNode(current_data[3]);
-          let br1 = document.createElement("br");
-          new_div.appendChild(text);
-          new_div.appendChild(br1);
-          new_div.appendChild(link);
-          new_div.appendChild(br1);
-          new_div.appendChild(date);
-          new_div.appendChild(br1);
-          document.body.appendChild(new_div);
-          document.body.appendChild(br1);
-          document.body.appendChild(br1);
+          addSearchResult(item);
+          // document.body.appendChild(br1);
         });
         // document.getElementById("dinamalar-tamil-text").innerHTML =
         //   items[0].childNodes[0].innerHTML;
@@ -139,9 +122,46 @@
         // console.log(
         //   items[0].childNodes[6].innerHTML.match("id=.+")[0].slice(3)
         // );
+        function addSearchResult(searchResult) {
+          let new_card = document.createElement("div");
+          new_card.className = "card mb-3";
+          let card_inner = document.createElement("div");
+          card_inner.className = "row no-gutters";
+          let card_photo = document.createElement("div");
+          card_photo.className = "col-md-4";
+          card_photo.appendChild(document.createElement("img"));
+          card_inner.appendChild(card_photo);
+          let text_div = document.createElement("div");
+          text_div.className = "col-md-8";
+          let text_div_inner = document.createElement("div");
+          text_div_inner.className = "card-body";
 
+          let current_data = [];
+          searchResult.childNodes.forEach((el) => {
+            let content = el.innerHTML;
+            current_data.push(content);
+          });
+          var text = document.createTextNode(current_data[0]);
+          var link = document.createTextNode(current_data[1]);
+          var date = document.createTextNode(current_data[3]);
+          let br1 = document.createElement("br");
+          text_div_inner.appendChild(text);
+          text_div_inner.appendChild(br1);
+          let br2 = document.createElement("br");
+          text_div_inner.appendChild(link);
+          text_div_inner.appendChild(br2);
+          let br3 = document.createElement("br");
+          text_div_inner.appendChild(date);
+          text_div_inner.appendChild(br3);
+          // document.body.appendChild(new_div);
+          text_div.appendChild(text_div_inner);
+          card_inner.appendChild(text_div);
+          new_card.appendChild(card_inner);
+          document.body.appendChild(new_card);
+          let br4 = document.createElement("br");
+          document.body.appendChild(br4);
+        }
         console.log(items);
       });
   </script>
-  //a
 </html>
