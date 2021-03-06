@@ -1,0 +1,228 @@
+<!-- SMPT -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tamil News Feed APP</title>
+  </head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+    crossorigin="anonymous"
+  />
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img
+            src="assets/images/tm.jpg"
+            alt=""
+            style="height: 75px; width: 75px"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >முகப்பு</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                இதழ்கள்
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item" href="http://www.dinamalar.com/"
+                    >தினமலர்</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://www.dinamani.com/"
+                    >தினமனி</a
+                  >
+                </li>
+                <!-- <li><hr class="dropdown-divider" /></li> -->
+                <li>
+                  <a class="dropdown-item" href="https://www.dailythanthi.com/"
+                    >தினத்தந்தி</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://www.hindutamil.in/"
+                    >தி ஹிந்து தமிழ்</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <br /><br />
+    <div class="container-fluid">
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img
+              src="assets/images/news.jpg"
+              class="card-img"
+              alt="..."
+              id="dinamalar-tamil-img"
+              style="max-width: 280px; max-height: 280px"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Latest News from Dinamalar</h5>
+              <p class="card-text" id="dinamalar-tamil-text">
+                கரோனா தடுப்பூசி சான்றிதழில் பிரதமர் மோடியின் படம் விவகாரம்
+                பெரும் சர்ச்சையை எழுப்பிய நிலையில் அதனை நீக்குமாறு மத்திய
+                அரசுக்கு தேர்தல் ஆணையம் உத்தரவிட்டுள்ளதாாக தகவல்
+                வெளியாகியுள்ளது. தமிழகம், கேரளா, மேற்குவங்கம், புதுச்சேரி, அசாம்
+                ஆகிய 5 மாநிலங்களுக்கும் சட்டப்பேரவைத் தேர்தல் நடைபெற்று
+                வருகிறது. இந்த மாநிலங்களில் பல்வேறு கட்டங்களாக தேர்தல் நடைபெறும்
+                என அறிவிக்கப்பட்டுள்ள நிலையில் தேர்தல் நடத்தை விதிமுறைகளும்
+                அமலில் உள்ளன.
+              </p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img
+              src="assets/images/news.jpg"
+              class="card-img"
+              alt="..."
+              style="max-width: 280px; max-height: 280px"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Latest News from the Hindu Tamil</h5>
+              <p class="card-text">
+                கரோனா தடுப்பூசி சான்றிதழில் பிரதமர் மோடியின் படம் விவகாரம்
+                பெரும் சர்ச்சையை எழுப்பிய நிலையில் அதனை நீக்குமாறு மத்திய
+                அரசுக்கு தேர்தல் ஆணையம் உத்தரவிட்டுள்ளதாாக தகவல்
+                வெளியாகியுள்ளது. தமிழகம், கேரளா, மேற்குவங்கம், புதுச்சேரி, அசாம்
+                ஆகிய 5 மாநிலங்களுக்கும் சட்டப்பேரவைத் தேர்தல் நடைபெற்று
+                வருகிறது. இந்த மாநிலங்களில் பல்வேறு கட்டங்களாக தேர்தல் நடைபெறும்
+                என அறிவிக்கப்பட்டுள்ள நிலையில் தேர்தல் நடத்தை விதிமுறைகளும்
+                அமலில் உள்ளன.
+              </p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img
+              src="assets/images/news.jpg"
+              class="card-img"
+              alt="..."
+              style="max-width: 280px; max-height: 280px"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Latest News from the Hindu Tamil</h5>
+              <p class="card-text">
+                கரோனா தடுப்பூசி சான்றிதழில் பிரதமர் மோடியின் படம் விவகாரம்
+                பெரும் சர்ச்சையை எழுப்பிய நிலையில் அதனை நீக்குமாறு மத்திய
+                அரசுக்கு தேர்தல் ஆணையம் உத்தரவிட்டுள்ளதாாக தகவல்
+                வெளியாகியுள்ளது. தமிழகம், கேரளா, மேற்குவங்கம், புதுச்சேரி, அசாம்
+                ஆகிய 5 மாநிலங்களுக்கும் சட்டப்பேரவைத் தேர்தல் நடைபெற்று
+                வருகிறது. இந்த மாநிலங்களில் பல்வேறு கட்டங்களாக தேர்தல் நடைபெறும்
+                என அறிவிக்கப்பட்டுள்ள நிலையில் தேர்தல் நடத்தை விதிமுறைகளும்
+                அமலில் உள்ளன.
+              </p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script>
+    // fetch(
+    //   "https://api.codetabs.com/v1/proxy?quest=https://news.google.com/rss?hl=ta&gl=IN&ceid=IN:ta"
+    // )
+    //   .then((response) => response.text())
+    //   .then((text) => console.log(text));
+    // fetch(
+    //   "https://api.codetabs.com/v1/proxy?quest=https://news.google.com/rss?hl=ta&gl=IN&ceid=IN:ta"
+    // )
+    fetch(
+      "https://api.codetabs.com/v1/proxy?quest=http://feeds.feedburner.com/dinamalar/Front_page_news"
+    )
+      .then((response) => response.text())
+      .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
+      .then((data) => {
+        const items = data.querySelectorAll("item");
+        // items[0].childNodes.forEach((el) => {
+        //   console.log(el.innerHTML);
+        // });
+        document.getElementById("dinamalar-tamil-text").innerHTML =
+          items[0].childNodes[0].innerHTML;
+        let id = items[0].childNodes[6].innerHTML.match("id=.+")[0].slice(3);
+        document.getElementById("dinamalar-tamil-img").src =
+          "https://img.dinamalar.com/data/largenew/Tamil_News_large_" +
+          id +
+          ".jpg";
+        // https://img.dinamalar.com/data/largenew/Tamil_News_large_2723676.jpg
+        // console.log(
+        //   items[0].childNodes[6].innerHTML.match("id=.+")[0].slice(3)
+        // );
+        console.log(data);
+      });
+  </script>
+</html>
