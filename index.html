@@ -137,7 +137,9 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title" id="dinamani-tamil-title">Latest News from Dinamani</h5>
+              <h5 class="card-title" id="dinamani-tamil-title">
+                Latest News from Dinamani
+              </h5>
               <p class="card-text" id="dinamani-tamil-text">
                 கரோனா தடுப்பூசி சான்றிதழில் பிரதமர் மோடியின் படம் விவகாரம்
                 பெரும் சர்ச்சையை எழுப்பிய நிலையில் அதனை நீக்குமாறு மத்திய
@@ -163,12 +165,13 @@
               class="card-img"
               alt="..."
               style="max-width: 280px; max-height: 280px"
+              id="hindu-tamil-img"
             />
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">Latest News from the Hindu Tamil</h5>
-              <p class="card-text">
+              <p class="card-text" id="hindu-tamil-text">
                 கரோனா தடுப்பூசி சான்றிதழில் பிரதமர் மோடியின் படம் விவகாரம்
                 பெரும் சர்ச்சையை எழுப்பிய நிலையில் அதனை நீக்குமாறு மத்திய
                 அரசுக்கு தேர்தல் ஆணையம் உத்தரவிட்டுள்ளதாாக தகவல்
@@ -225,13 +228,32 @@
         // );
         console.log(data);
       });
-      fetch('https://www.dinamani.com/%E0%AE%A4%E0%AE%B1%E0%AF%8D%E0%AE%AA%E0%AF%8B%E0%AE%A4%E0%AF%88%E0%AE%AF-%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%95%E0%AE%B3%E0%AF%8D/%E0%AE%AE%E0%AF%81%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%BF%E0%AE%AF%E0%AE%9A%E0%AF%8D-%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%95%E0%AE%B3%E0%AF%8D/rssfeed/?id=479&getXmlFeed=true')
-      .then(res => res.text())
-      .then(res => new window.DOMParser().parseFromString(res, 'text/xml'))
+    fetch(
+      "https://www.dinamani.com/%E0%AE%A4%E0%AE%B1%E0%AF%8D%E0%AE%AA%E0%AF%8B%E0%AE%A4%E0%AF%88%E0%AE%AF-%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%95%E0%AE%B3%E0%AF%8D/%E0%AE%AE%E0%AF%81%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%BF%E0%AE%AF%E0%AE%9A%E0%AF%8D-%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%95%E0%AE%B3%E0%AF%8D/rssfeed/?id=479&getXmlFeed=true"
+    )
+      .then((res) => res.text())
+      .then((res) => new window.DOMParser().parseFromString(res, "text/xml"))
       .then((data) => {
         const items = data.querySelectorAll("item");
-        document.getElementById("dinamani-tamil-text").innerHTML = items[0].childNodes[7].innerHTML;
-        document.getElementById("dinamani-tamil-img").src = items[0].childNodes[21].innerHTML;
+        document.getElementById("dinamani-tamil-text").innerHTML =
+          items[0].childNodes[7].innerHTML;
+        document.getElementById("dinamani-tamil-img").src =
+          items[0].childNodes[21].innerHTML;
+      });
+    fetch(
+      "https://api.codetabs.com/v1/proxy?quest=http://feeds.feedburner.com/Hindu_Tamil_india"
+    )
+      .then((res) => res.text())
+      .then((res) => new window.DOMParser().parseFromString(res, "text/xml"))
+      .then((data) => {
+        const items = data.querySelectorAll("item");
+        // console.log(items);
+        document.getElementById("hindu-tamil-text").innerHTML =
+          items[0].childNodes[0].innerHTML;
+        image_encoded = items[0].childNodes[2].innerHTML;
+        // console.log(image_encoded);
+        match = image_encoded.match("https://.+.jpg")[0];
+        document.getElementById("hindu-tamil-img").src = match;
       });
   </script>
 </html>
