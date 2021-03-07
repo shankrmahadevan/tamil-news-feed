@@ -75,7 +75,7 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex" action="/search.html">
+          <form class="d-flex" action="search.html">
             <input
               class="form-control me-2"
               type="search"
@@ -97,22 +97,21 @@
     ></script>
   </body>
   <script>
-    let query = "திமுக";
     // Stackoverflowcode
     function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
+      var query = window.location.search.substring(1);
+      var vars = query.split("&");
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
         if (decodeURIComponent(pair[0]) == variable) {
-            return decodeURIComponent(pair[1]);
+          return decodeURIComponent(pair[1]);
         }
+      }
+      console.log("Query variable %s not found", variable);
     }
-    console.log('Query variable %s not found', variable);
-}
     const limit = 25;
-    const q = getQueryVariable('q');
-    const page = getQueryVariable('page') || 1;
+    const query = getQueryVariable("q");
+    const page = getQueryVariable("page") || 1;
     let search_url =
       "https://api.codetabs.com/v1/proxy?quest=https://news.google.com/rss/search?q=" +
       query +
@@ -123,64 +122,81 @@
       .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
       .then((data) => {
         const items = data.querySelectorAll("item");
-        for(let i= (page-1)*limit;i<Math.min(items.length, page*limit);i++){
+        for (
+          let i = (page - 1) * limit;
+          i < Math.min(items.length, page * limit);
+          i++
+        ) {
           addSearchResult(items[i]);
         }
-        // items.forEach((item) => {
-        //   addSearchResult(item);
-        //   // document.body.appendChild(br1);
-        // });
-        // document.getElementById("dinamalar-tamil-text").innerHTML =
-        //   items[0].childNodes[0].innerHTML;
-        // let id = items[0].childNodes[6].innerHTML.match("id=.+")[0].slice(3);
-        // document.getElementById("dinamalar-tamil-img").src =
-        //   "https://img.dinamalar.com/data/largenew/Tamil_News_large_" +
-        //   id +
-        //   ".jpg";
-        // https://img.dinamalar.com/data/largenew/Tamil_News_large_2723676.jpg
-        // console.log(
-        //   items[0].childNodes[6].innerHTML.match("id=.+")[0].slice(3)
-        // );
-        function addSearchResult(searchResult) {
-          let new_card = document.createElement("div");
-          new_card.className = "card mb-3";
-          let card_inner = document.createElement("div");
-          card_inner.className = "row no-gutters";
-          let card_photo = document.createElement("div");
-          card_photo.className = "col-md-4";
-          card_photo.appendChild(document.createElement("img"));
-          card_inner.appendChild(card_photo);
-          let text_div = document.createElement("div");
-          text_div.className = "col-md-8";
-          let text_div_inner = document.createElement("div");
-          text_div_inner.className = "card-body";
-
-          let current_data = [];
-          searchResult.childNodes.forEach((el) => {
-            let content = el.innerHTML;
-            current_data.push(content);
-          });
-          var text = document.createTextNode(current_data[0]);
-          var link = document.createTextNode(current_data[1]);
-          var date = document.createTextNode(current_data[3]);
-          let br1 = document.createElement("br");
-          text_div_inner.appendChild(text);
-          text_div_inner.appendChild(br1);
-          let br2 = document.createElement("br");
-          text_div_inner.appendChild(link);
-          text_div_inner.appendChild(br2);
-          let br3 = document.createElement("br");
-          text_div_inner.appendChild(date);
-          text_div_inner.appendChild(br3);
-          // document.body.appendChild(new_div);
-          text_div.appendChild(text_div_inner);
-          card_inner.appendChild(text_div);
-          new_card.appendChild(card_inner);
-          document.body.appendChild(new_card);
-          let br4 = document.createElement("br");
-          document.body.appendChild(br4);
-        }
-        console.log(items);
       });
+    logo_path = {
+      vikatan: "vikatan.png",
+      asianet: "Asianet-news.jpg",
+      dinamani: "Dinamani.jpg",
+      dinamalar: "Dinamalar.png",
+      dailythanthi: "Dinathanthi.png",
+      puthiyathalaimurai: "Puthiya Thalaimurai.png",
+      dinakaran: "Dinakaran.jpg",
+      hindutamil: "Hindu-Tamil.jpg",
+      news18: "News18_Tamil.jpg",
+      polimer: "Polimer.jpg",
+      zee: "Zee-hindustan.png",
+      indianexpress: "IE Tamil.png",
+      maalaimalar: "Maalai Malar.png",
+    };
+    function addSearchResult(searchResult) {
+      let new_card = document.createElement("div");
+      new_card.className = "card mb-3";
+      let card_inner = document.createElement("div");
+      card_inner.className = "row no-gutters";
+      let card_photo = document.createElement("div");
+      card_photo.className = "col-md-4";
+      let text_div = document.createElement("div");
+      text_div.className = "col-md-8";
+      let text_div_inner = document.createElement("div");
+      text_div_inner.className = "card-body";
+
+      let current_data = [];
+      searchResult.childNodes.forEach((el) => {
+        let content = el.innerHTML;
+        current_data.push(content);
+      });
+      let img_contained = false;
+      let logo_img_path = "assets/images/news.jpg";
+      for (site in logo_path) {
+        if (current_data[3].substring(site)) {
+          console.log("yes", site);
+          img_contained = true;
+          logo_img_path = "assets/images/" + logo_path[site];
+        }
+      }
+      var text = document.createTextNode(current_data[0]);
+      // var link = document.createTextNode(current_data[1]);
+      var link = document.createElement("a");
+      link.href = current_data[1];
+      link.appendChild(document.createTextNode("Goto"));
+      var date = document.createTextNode(current_data[3]);
+      let br1 = document.createElement("br");
+      text_div_inner.appendChild(text);
+      text_div_inner.appendChild(br1);
+      let br2 = document.createElement("br");
+      text_div_inner.appendChild(link);
+      text_div_inner.appendChild(br2);
+      let br3 = document.createElement("br");
+      text_div_inner.appendChild(date);
+      text_div_inner.appendChild(br3);
+      // document.body.appendChild(new_div);
+      text_div.appendChild(text_div_inner);
+      let card_left_image = document.createElement("img");
+      card_left_image.src = logo_img_path;
+      card_photo.appendChild(card_left_image);
+      card_inner.appendChild(card_photo);
+      card_inner.appendChild(text_div);
+      new_card.appendChild(card_inner);
+      document.body.appendChild(new_card);
+      let br4 = document.createElement("br");
+      document.body.appendChild(br4);
+    }
   </script>
 </html>
