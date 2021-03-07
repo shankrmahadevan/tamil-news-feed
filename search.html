@@ -75,12 +75,13 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" action="/search.html">
             <input
               class="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              name="q"
             />
             <button class="btn btn-outline-success" type="submit">
               Search
@@ -97,6 +98,21 @@
   </body>
   <script>
     let query = "திமுக";
+    // Stackoverflowcode
+    function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    console.log('Query variable %s not found', variable);
+}
+    const limit = 25;
+    const q = getQueryVariable('q');
+    const page = getQueryVariable('page') || 1;
     let search_url =
       "https://api.codetabs.com/v1/proxy?quest=https://news.google.com/rss/search?q=" +
       query +
@@ -107,10 +123,13 @@
       .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
       .then((data) => {
         const items = data.querySelectorAll("item");
-        items.forEach((item) => {
-          addSearchResult(item);
-          // document.body.appendChild(br1);
-        });
+        for(let i= (page-1)*limit;i<Math.min(items.length, page*limit);i++){
+          addSearchResult(items[i]);
+        }
+        // items.forEach((item) => {
+        //   addSearchResult(item);
+        //   // document.body.appendChild(br1);
+        // });
         // document.getElementById("dinamalar-tamil-text").innerHTML =
         //   items[0].childNodes[0].innerHTML;
         // let id = items[0].childNodes[6].innerHTML.match("id=.+")[0].slice(3);
