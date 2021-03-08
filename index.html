@@ -215,83 +215,87 @@
       </button>
     </div>
     <br /><br />
-    <div
-      class="row container-fluid col-sm-12 col-lg-12 col-md-12 col-xs-12 center"
-    >
+    <div class="row container-fluid">
       <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">
-        <div class="card">
-          <div class="row">
-            <div class="col-sm-4">
-              <img
-                src="assets/images/news.jpg"
-                class="card-img"
-                alt="..."
-                style="max-width: 150px; max-height: 150px"
-                id="dinamalar-tamil-img"
-              />
+        <h4 style="text-decoration: underline">செய்திகள்</h4>
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="row">
+              <div class="col-sm-4">
+                <img
+                  src="assets/images/news.jpg"
+                  class="card-img"
+                  alt="..."
+                  style="max-width: 150px; max-height: 150px"
+                  id="dinamalar-tamil-img"
+                />
+              </div>
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <!-- <h5 class="card-title">Special title treatment</h5> -->
+                  <p class="card-text" id="dinamalar-tamil-text">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <a href="#" class="btn btn-primary">முழு கவரேஜையும் காட்டு</a>
+                </div>
+              </div>
             </div>
-            <div class="col-sm-8">
-              <div class="card-body">
-                <!-- <h5 class="card-title">Special title treatment</h5> -->
-                <p class="card-text" id="dinamalar-tamil-text">
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </p>
-                <a href="#" class="btn btn-primary">முழு கவரேஜையும் காட்டு</a>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="row">
+              <div class="col-sm-4">
+                <img
+                  src="assets/images/news.jpg"
+                  class="card-img"
+                  alt="..."
+                  style="max-width: 150px; max-height: 150px"
+                  id="dinamani-tamil-img"
+                />
+              </div>
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <!-- <h5 class="card-title">Special title treatment</h5> -->
+                  <p class="card-text" id="dinamani-tamil-text">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <a href="#" class="btn btn-primary">முழு கவரேஜையும் காட்டு</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="row">
+              <div class="col-sm-4">
+                <img
+                  src="assets/images/news.jpg"
+                  class="card-img"
+                  alt="..."
+                  style="max-width: 200px; max-height: 200px"
+                  id="hindu-tamil-img"
+                />
+              </div>
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <!-- <h5 class="card-title">Special title treatment</h5> -->
+                  <p class="card-text" id="hindu-tamil-text">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <a href="#" class="btn btn-primary">முழு கவரேஜையும் காட்டு</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">
-        <div class="card">
-          <div class="row">
-            <div class="col-sm-4">
-              <img
-                src="assets/images/news.jpg"
-                class="card-img"
-                alt="..."
-                style="max-width: 150px; max-height: 150px"
-                id="dinamani-tamil-img"
-              />
-            </div>
-            <div class="col-sm-8">
-              <div class="card-body">
-                <!-- <h5 class="card-title">Special title treatment</h5> -->
-                <p class="card-text" id="dinamani-tamil-text">
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </p>
-                <a href="#" class="btn btn-primary">முழு கவரேஜையும் காட்டு</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">
-        <div class="card">
-          <div class="row">
-            <div class="col-sm-4">
-              <img
-                src="assets/images/news.jpg"
-                class="card-img"
-                alt="..."
-                style="max-width: 200px; max-height: 200px"
-                id="hindu-tamil-img"
-              />
-            </div>
-            <div class="col-sm-8">
-              <div class="card-body">
-                <!-- <h5 class="card-title">Special title treatment</h5> -->
-                <p class="card-text" id="hindu-tamil-text">
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </p>
-                <a href="#" class="btn btn-primary">முழு கவரேஜையும் காட்டு</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6" id="just-now">
+        <h4 style="text-decoration: underline">சற்று முன்</h4>
       </div>
     </div>
   </body>
@@ -355,6 +359,52 @@
     for (let i = 1; i <= 3; i++) {
       updateCarouselImage(i);
     }
+    fetch(
+      "https://api.codetabs.com/v1/proxy?quest=https://www.polimernews.com/rss"
+    )
+      .then((res) => res.text())
+      .then((res) => new window.DOMParser().parseFromString(res, "text/xml"))
+      .then((data) => {
+        const items = data.querySelectorAll("item");
+        // console.log(items);
+        for (let i = 0; i < items.length; i++) {
+          // console.log(items[i]);
+          updateJustNow(items[i]);
+        }
+      });
+    function updateJustNow(item) {
+      let outer_div = document.createElement("div");
+      outer_div.className = "col-sm-12";
+      let card = document.createElement("div");
+      card.className = "card";
+      let row_div = document.createElement("div");
+      row_div.className = "row";
+      let image_div = document.createElement("div");
+      image_div.className = "col-sm-4";
+      let image = document.createElement("img");
+      image.src = item.childNodes[7].outerHTML.match("https:.+jpg")[0];
+      // console.log(image.src);
+      image.className = "card-image";
+      image.style = "max-width: 150px; max-height: 150px";
+      image_div.appendChild(image);
+      row_div.appendChild(image_div);
+      let div_sm_8 = document.createElement("div");
+      div_sm_8.className = "col-sm-8";
+      let card_body = document.createElement("div");
+      let inner_text = document.createTextNode(item.childNodes[0].innerHTML);
+      inner_text.className = "card-text";
+      let button = document.createElement("a");
+      button.href = item.childNodes[1].innerHTML;
+      button.className = "btn btn-primary";
+      button.innerHTML = "முழு கவரேஜையும் காட்டு";
+      card_body.appendChild(inner_text);
+      card_body.appendChild(button);
+      div_sm_8.appendChild(card_body);
+      row_div.appendChild(div_sm_8);
+      card.appendChild(row_div);
+      outer_div.appendChild(card);
+      document.getElementById("just-now").appendChild(outer_div);
+    }
   </script>
   <style>
     @font-face {
@@ -369,4 +419,8 @@
       font-size: 125%;
     }
   </style>
+  <!-- polimer:
+    item.childNodes[0] = title
+    item.childNodes[1] = link
+    item.childNodes[7] = image -->
 </html>
