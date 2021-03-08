@@ -153,13 +153,43 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="assets/images/car/a.jpg" class="d-block w-100" alt="..." />
+          <img
+            src="assets/images/car/a.jpg"
+            class="d-block w-100"
+            alt="..."
+            id="carousel-page1-image"
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <p id="carousel-page1-caption">
+              Some representative placeholder content for the second slide.
+            </p>
+          </div>
         </div>
         <div class="carousel-item">
-          <img src="assets/images/car/b.jpg" class="d-block w-100" alt="..." />
+          <img
+            src="assets/images/car/b.jpg"
+            class="d-block w-100"
+            alt="..."
+            id="carousel-page2-image"
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <p id="carousel-page2-caption">
+              Some representative placeholder content for the second slide.
+            </p>
+          </div>
         </div>
         <div class="carousel-item">
-          <img src="assets/images/car/c.jpg" class="d-block w-100" alt="..." />
+          <img
+            src="assets/images/car/c.jpg"
+            class="d-block w-100"
+            alt="..."
+            id="carousel-page3-image"
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <p id="carousel-page3-caption">
+              Some representative placeholder content for the second slide.
+            </p>
+          </div>
         </div>
       </div>
       <button
@@ -316,13 +346,30 @@
       .then((res) => new window.DOMParser().parseFromString(res, "text/xml"))
       .then((data) => {
         const items = data.querySelectorAll("item");
-        // console.log(items);
         document.getElementById("hindu-tamil-text").innerHTML =
           items[0].childNodes[0].innerHTML;
         image_encoded = items[0].childNodes[2].innerHTML;
-        // console.log(image_encoded);
         match = image_encoded.match("https://.+.jpg")[0];
         document.getElementById("hindu-tamil-img").src = match;
       });
+    function updateCarouselImage(page_no) {
+      fetch(
+        "https://www.dinamani.com/%E0%AE%A4%E0%AE%B1%E0%AF%8D%E0%AE%AA%E0%AF%8B%E0%AE%A4%E0%AF%88%E0%AE%AF-%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%95%E0%AE%B3%E0%AF%8D/%E0%AE%A4%E0%AE%B1%E0%AF%8D%E0%AE%AA%E0%AF%8B%E0%AE%A4%E0%AF%88%E0%AE%AF-%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%95%E0%AE%B3%E0%AF%8D/rssfeed/?id=687&getXmlFeed=true"
+      )
+        .then((res) => res.text())
+        .then((res) => new window.DOMParser().parseFromString(res, "text/xml"))
+        .then((data) => {
+          const items = data.querySelectorAll("item");
+          document.getElementById(
+            "carousel-page" + page_no + "-caption"
+          ).innerHTML = items[page_no].children[3].innerHTML;
+          document.getElementById("carousel-page" + page_no + "-image").src =
+            items[page_no].childNodes[21].innerHTML;
+        });
+    }
+    let i = 0;
+    for (i = 0; i <= 3; i++) {
+      updateCarouselImage(i);
+    }
   </script>
 </html>
