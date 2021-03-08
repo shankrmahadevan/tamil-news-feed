@@ -83,29 +83,21 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-              வகைப்பாடு
+                வகைப்பாடு
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item" href="#"
-                    >தொழில்நுட்பம்</a
-                  >
+                  <a class="dropdown-item" href="#">தொழில்நுட்பம்</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#"
-                    >விளையாட்டு</a
-                  >
+                  <a class="dropdown-item" href="#">விளையாட்டு</a>
                 </li>
                 <!-- <li><hr class="dropdown-divider" /></li> -->
                 <li>
-                  <a class="dropdown-item" href="#"
-                    >சந்தை</a
-                  >
+                  <a class="dropdown-item" href="#">சந்தை</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#"
-                    >வணிக</a
-                  >
+                  <a class="dropdown-item" href="#">வணிக</a>
                 </li>
               </ul>
             </li>
@@ -147,8 +139,8 @@
     }
     const limit = 25;
     const query = getQueryVariable("q");
-    if(query){
-      document.querySelector('#q').value = query;
+    if (query) {
+      document.querySelector("#q").value = query;
     }
     const page = getQueryVariable("page") || 1;
     let search_url =
@@ -204,7 +196,7 @@
       let logo_img_path = "assets/images/news.jpg";
       for (site in logo_path) {
         if (current_data[1].includes(site)) {
-          logo_img_path = "assets/images/" + logo_path[site];
+          logo_img_path = "assets/images/news-logos/" + logo_path[site];
           // console.log(logo_img_path, "yes", site);
           break;
         }
