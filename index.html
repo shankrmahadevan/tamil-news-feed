@@ -22,13 +22,17 @@
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <link href="assets/style.css" rel="stylesheet" />
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+    style="max-height: 10vh;">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"
           ><img
             src="assets/images/tm.jpg"
             alt=""
-            style="height: 75px; width: 75px"
+            style="height: 50px; width: 50px; border-radius: 5px;
+             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+              rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+               rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;"
         /></a>
         <button
           class="navbar-toggler"
@@ -126,7 +130,6 @@
         </div>
       </div>
     </nav>
-    <br /><br />
     <div
       id="slides"
       class="carousel carousel-dark slide"
@@ -214,10 +217,9 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <br /><br />
     <div class="row container-fluid">
       <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">
-        <h4 style="text-decoration: underline">செய்திகள்</h4>
+        <h4 style="text-align: center">செய்திகள்</h4>
         <div class="col-sm-12">
           <div class="card">
             <div class="row">
@@ -295,7 +297,7 @@
         </div>
       </div>
       <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6" id="just-now">
-        <h4 style="text-decoration: underline">சற்று முன்</h4>
+        <h4 style="text-align: center">சற்று முன்</h4>
       </div>
     </div>
   </body>
@@ -390,7 +392,6 @@
       image_div.className = "col-sm-4";
       let image = document.createElement("img");
       image.src = item.childNodes[7].outerHTML.match("https:.+jpg")[0];
-      // console.log(image.src);
       image.className = "card-image";
       image.style = "max-width: 150px; max-height: 150px";
       image_div.appendChild(image);
@@ -398,13 +399,17 @@
       let div_sm_8 = document.createElement("div");
       div_sm_8.className = "col-sm-8";
       let card_body = document.createElement("div");
-      let inner_text = document.createTextNode(item.childNodes[0].innerHTML);
-      inner_text.className = "card-text";
+      card_body.className = "card-body";
+      // let inner_text = document.createTextNode(item.childNodes[0].innerHTML);
+      // inner_text.className = "card-text";
+      let card_text = document.createElement('p');
+      card_text.className = "card-text";
+      card_text.innerHTML = item.childNodes[0].innerHTML;
       let button = document.createElement("a");
       button.href = item.childNodes[1].innerHTML;
       button.className = "btn btn-primary";
       button.innerHTML = "முழு கவரேஜையும் காட்டு";
-      card_body.appendChild(inner_text);
+      card_body.appendChild(card_text);
       card_body.appendChild(button);
       div_sm_8.appendChild(card_body);
       row_div.appendChild(div_sm_8);
@@ -421,9 +426,13 @@
     #dinamalar-tamil-text,
     #hindu-tamil-text,
     #dinamani-tamil-text,
+    .card-text,
     .carousel-caption {
       font-family: "MuktaMalar-Regular";
       font-size: 125%;
+    }
+    .card{
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     }
   </style>
   <!-- polimer:
