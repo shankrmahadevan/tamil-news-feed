@@ -342,18 +342,25 @@
         document.getElementById("hindu-tamil-img").src = match;
       });
     function updateCarouselImage(page_no) {
-      fetch(
-        "https://www.dinamani.com/%E0%AE%A4%E0%AE%B1%E0%AF%8D%E0%AE%AA%E0%AF%8B%E0%AE%A4%E0%AF%88%E0%AE%AF-%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%95%E0%AE%B3%E0%AF%8D/%E0%AE%A4%E0%AE%B1%E0%AF%8D%E0%AE%AA%E0%AF%8B%E0%AE%A4%E0%AF%88%E0%AE%AF-%E0%AE%9A%E0%AF%86%E0%AE%AF%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%95%E0%AE%B3%E0%AF%8D/rssfeed/?id=687&getXmlFeed=true"
-      )
+      fetch("https://www.dinamani.com/rss")
         .then((res) => res.text())
-        .then((res) => new window.DOMParser().parseFromString(res, "text/xml"))
+        .then((res) => new window.DOMParser().parseFromString(res, "text/html"))
         .then((data) => {
-          const items = data.querySelectorAll("item");
-          document.getElementById(
-            "carousel-page" + page_no + "-caption"
-          ).innerHTML = items[page_no - 1].children[3].innerHTML;
-          document.getElementById("carousel-page" + page_no + "-image").src =
-            items[page_no - 1].childNodes[21].innerHTML;
+          let rss_feed_url = data.getElementsByClassName("SiteColor")[1].href;
+          fetch(rss_feed_url)
+            .then((res) => res.text())
+            .then((res) =>
+              new window.DOMParser().parseFromString(res, "text/xml")
+            )
+            .then((data) => {
+              const items = data.querySelectorAll("item");
+              document.getElementById(
+                "carousel-page" + page_no + "-caption"
+              ).innerHTML = items[page_no - 1].children[3].innerHTML;
+              document.getElementById(
+                "carousel-page" + page_no + "-image"
+              ).src = items[page_no - 1].childNodes[21].innerHTML;
+            });
         });
     }
     for (let i = 1; i <= 3; i++) {
